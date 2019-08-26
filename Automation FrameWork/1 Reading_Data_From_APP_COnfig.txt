@@ -1,0 +1,98 @@
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+							 Reading the configuration from App.Config
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Project Type :  UnitTestProject.NetFramework
+
+
+AppConfig Reader
+
+Packages are Collection Of dll files
+
+Install Selenium,Chrome, Firefox Form The Nuget Package
+
+
+
+
+
+
+
+
+1) Create App.Config
+
+<configuration>
+  <appSettings>
+    
+    <add key="BrowserType" value="Chrome"/>
+    <add key="Username" value="User"/>
+    <add key="Password" value="Pass"/>
+
+  </appSettings>
+
+
+</configuration>
+
+-----------------------------------------------------------------------------------------
+2)
+
+
+Provide  the  reference :  
+
+References > RC > Add references > system.configuration    Which Will  add  reference to the  configuration 
+
+Nuget Package :  Add  System.Configuration
+
+
+
+
+
+
+Add  from Nuget Package:
+
+System.Configuration.ConfigurationManager 
+System.Configuration.Abstractions
+Core.System.Configuration.Install
+
+-Which add System.Configuration dll  into  references
+
+
+Configuration Manager  will  help  us to read the data  from Configuration file 
+-----------------------------------------------------------------------------------------
+
+3) create  a  folder interface 
+
+Add  a interface IConfig
+
+
+-----------------------------------------------------------------------------------------
+(4)  Create  a  Configuration Directory (Folder)
+
+Create  a  class  named  BrowserType
+
+Make  it  Enum : it  used  to  create Named constant
+
+
+
+Create a class  called AppConfigReader
+
+//  which  is  going to read  the data  form the Appconfig
+
+
+
+-----------------------------------------------------------------------------------------
+5)  
+
+
+Create folder settings and  add a  class
+
+
+AppConfigKeys
+
+------------------------------------------------------------------------------------------
+
+6 Into  Configuration  create  a class  called XmlReader

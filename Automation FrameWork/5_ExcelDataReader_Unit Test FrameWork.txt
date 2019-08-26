@@ -1,0 +1,246 @@
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								Reading Data From Excel
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Before Running The Test Make Sure Excel File Is Not Open 
+-----------------------------------------------------------------------------
+
+
+
+Add  refernce :	System.xml ,  System.data
+
+
+From The Nuget Package :
+
+
+  	 ExcelDataReader.DataSet  , 	Excel data redaer ,  	System.Text.Encoding.CodePages ,	 Microsoft.Office.interop.Excel
+
+
+ Add: using System.Data;
+
+
+
+
+
+Reading data from xlsx file and xls file is diffrent you will  have to use the diffrent methods :
+
+
+// . xlsx
+
+IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+
+// .xls
+
+IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+using ExcelDataReader;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+using System.IO;
+
+
+namespace BUniFrame.Helpers
+{
+   
+    public class ExcelReader
+    {
+
+
+
+        public string TestReadExcel(string xlPath, string sheetName, int row, int column)
+        {
+
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+            using (var stream = File.Open(xlPath, FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    DataTable tabel = reader.AsDataSet().Tables[sheetName];
+
+                    //  return GetData(tabel.Rows[row][column].GetType(), tabel.Rows[row][column]);
+                    //   return tabel.Rows[row][column];  // With Method Type Object
+
+                    return tabel.Rows[row][column].ToString();
+
+                    reader.Close();
+                    stream.Close();
+
+                }
+
+            }
+
+        }
+
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------MS TEST AND Nunit--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Rc On Project :
+
+From The Nuget Package :
+
+
+
+	 // Add  refernce System.xml
+
+            //     Install Nuget ExcelDataReader.DataSet  , Excel data redaer ,  System.Text.Encoding.CodePages
+
+
+            //Add: using System.Data;
+
+Reading data from xlsx file and xls file is diffrent you will  have to use the diffrent methods :
+
+
+// . xlsx
+
+IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+
+// .xls
+
+IExcelDataReader excelReader = ExcelReaderFactory.CreateBinaryReader(stream);
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+using ExcelDataReader;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Text;
+
+
+
+
+
+
+
+namespace KK_SEC_4.ExcelReader
+{
+    [TestClass]
+
+    public class TestExcelData
+    {
+       [ TestMethod]
+        public void TestReadExcel()
+
+        {
+  
+            
+
+            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+          
+
+            using (var stream = File.Open(@"C:\Users\RUSHIT  PATEL\Downloads\Learn\C# Selenium\BDD C# Selenium\Section_12\Author_Code\DataFile_2\Data.xlsx", FileMode.Open, FileAccess.Read))
+            {
+                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                {
+                    DataTable tabel = reader.AsDataSet().Tables["Bugzilla"];
+                    Console.WriteLine("Data : {0}", tabel.Rows[0][0]);
+                    reader.Close();
+                    stream.Close();
+
+                }
+            }
+
+            
+            
+        }
+
+    }
+}
+
+
+//var result = reader.AsDataSet().Tables["bb"]; //  bb  is the Excel  Sheet  NAme 
+
+//IWebElement email = driver.FindElement(By.Id("email"));
+//Thread.Sleep(5000);
+//                    email.SendKeys(result.Rows[1][0].ToString());
+
+
+//                    IWebElement Pass = driver.FindElement(By.Id("pass"));
+//Pass.SendKeys(result.Rows[1][1].ToString());
+//                    Thread.Sleep(5000);
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/******  Reading All  The Data  *****/
+
+
+//System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+
+
+            //using (var stream = File.Open(@"C:\Users\RUSHIT  PATEL\Downloads\Learn\C# Selenium\BDD C# Selenium\Section_12\Author_Code\DataFile_2\Data.xlsx", FileMode.Open, FileAccess.Read))
+            //{
+            //    using (var reader = ExcelReaderFactory.CreateReader(stream))
+            //    {
+
+            //        // Reading all  Data  From Excel File
+
+            //        var result = reader.AsDataSet().Tables["Bugzilla"];
+
+            //        for (int i = 0; i < result.Rows.Count; i++)
+            //        {
+            //            var col = result.Rows[i];
+
+            //            for (int j = 0; j < col.ItemArray.Length; j++)
+            //            {
+
+            //               Console.WriteLine("Data : {0}", col.ItemArray[j].ToString());
+            //            }
+
+    //        //        }
+    //    }
+    //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,347 @@
+File Upload 
+
+
+Downlaod and Install AutoIT Tool
+
+With the Help of AutoIT tool
+
+
+
+***********************************************
+Put the files into  D or C Drive and Provide Clear Path 
+
+
+
+ var processinfo = new ProcessStartInfo()
+            {
+                FileName = @"D:\files\FileUpload.exe",
+                Arguments = @"D:\files\textfile.txt"
+            };
+
+***********************************************
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								File_Upload_AutoIT_Script
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+- Window Based Authentication   Handling
+
+- Window Based Dialog-Box
+
+
+Install The Auto It
+
+- FIleUpload.au3 Is The Extension
+
+
+
+1. Create a loop which will wait for file upload dialog box
+
+2.Bring the Upload DialogBox In Focus
+
+3.Supply The file along with its path in the uploaddialog
+
+4.Click On Upload Button
+
+Search : Autoit WIndow Info
+
+FInder Tool :  With The Help Of Finder Tool Get The Handle
+
+Title:
+
+Basic ControlInfo : (File)
+
+AfterAll  Go To : Tool > Build >  It Will Generate the .exe file
+
+Provide the  Pathe of .exe file 
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								Code
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+Create Directory Resources :
+
+Put The File(One That You Want To Upload)  And AutoIt.exe Into This Folder
+
+
+
+
+
+Go to Their Properties :
+
+And Change The Attribute : Copy To OutPutDirectory to : Copy Always
+
+
+
+
+
+// In this Manner Everything Will Be Taken Care By The FrameWork
+
+[TestMethod]
+        [DeploymentItem("Resources")]
+        public void FileUploadTest3 ()
+        {
+            var processinfo = new ProcessStartInfo()
+            {
+                FileName = "fileupload.exe",
+                Arguments = "\"" + Directory.GetCurrentDirectory() + @"\Test.xlsx" + "\""   
+            };
+
+            using (var process = Process.Start(processinfo))
+            {
+                process.WaitForExit();
+            }
+
+
+            Thread.Sleep(5000);
+
+        }
+
+
+
+As We Are Running Tests From Deployment Item  We Need To Copy ChromeDriver or Relevant exe into the 
+
+[DeploymentItem("Resources","TestResourcesDir")]
+public void FileUploadTest()
+{
+	
+
+}
+
+
+[DeploymentItem("Resources")]
+public void FileUploadTest()
+{
+	
+	
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ public class TestFileUpload
+    {
+/*
+        [Test]
+        public void FileUploadTest()
+        {
+            ProcessStartInfo processinfo = new ProcessStartInfo();
+            processinfo.FileName = @"Path To .exe File";
+            processinfo.Arguments = @"Path To The File You Want To Upload";
+
+
+            Process process = Process.Start(processinfo);
+            process.WaitForExit();
+            process.Close();
+
+            Thread.Sleep(5000);
+
+        }
+
+*/
+
+        [Test]
+        public void FileUploadTest2()
+        {
+            var processinfo = new ProcessStartInfo()
+            {
+                FileName = @"C:\Users\RUSHIT  PATEL\Downloads\Learn\C# and selenium web driver\File upload\Exer1\FileUpload.exe",
+                Arguments = @"D:\FileExpr.docx"
+            };
+
+            using (var process = Process.Start(processinfo))
+            {
+                process.WaitForExit();
+            }
+
+
+            Thread.Sleep(5000);
+
+        }
+
+
+
+
+        // Using With FrameWork
+
+        // Make Sure You Copy To OutPut Directory : Copy Always For All
+        // Provide ChromeDriver And other exe
+
+	//  Will have to Use this With  [TestMethod] Attribute and MsTest
+
+
+        //[Test]
+        //[DeploymentItem("Resources")]
+        //public void FileUploadTest3()
+        //{
+        //    var processinfo = new ProcessStartInfo()
+        //    {
+        //        FileName = "fileupload.exe",
+        //        Arguments = "\"" + Directory.GetCurrentDirectory() + @"\Test.xlsx" + "\""
+        //    };
+
+        //    using (var process = Process.Start(processinfo))
+        //    {
+        //        process.WaitForExit();
+        //    }
+
+
+        //    Thread.Sleep(5000);
+
+        //}
+
+
+
+
+    }
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace AutomationFrameWork1.FileUpload
+{   
+    
+    public class Filetest : IDisposable
+    {
+        public IWebDriver driver;
+
+
+        public void InitalizeDriver(string browser)
+        {
+            switch (browser)
+            {
+                case "Chrome":
+                    driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+                case "Firefox":
+                    driver = new FirefoxDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+                case "IE":
+                    driver = new InternetExplorerDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+                default:
+                    driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+            }
+        }
+
+
+
+
+
+
+
+        [Test]
+        public void Test ()
+        {
+            InitalizeDriver("Chrome");
+            driver.Navigate().GoToUrl("https://www.pdfmerge.com/");
+            driver.Manage().Window.Maximize();
+            IWebElement Button = driver.FindElement(By.CssSelector("#fileUploads>div:nth-child(1)>input"));
+            Button.Click();
+
+
+            var processinfo = new ProcessStartInfo()
+            {
+                FileName = @"D:\files\FileUpload.exe",
+                Arguments = @"D:\files\textfile.txt"
+            };
+
+
+            using (var process = Process.Start(processinfo))
+            {
+                process.WaitForExit();
+            }
+
+            Thread.Sleep(5000);
+
+        }
+
+
+
+
+        /*
+            [Test]
+            public void FileUploadTest()
+            {
+                ProcessStartInfo processinfo = new ProcessStartInfo();
+                processinfo.FileName = @"Path To .exe File";
+                processinfo.Arguments = @"Path To The File You Want To Upload";
+
+
+                Process process = Process.Start(processinfo);
+                process.WaitForExit();
+                process.Close();
+
+                Thread.Sleep(5000);
+
+            }
+
+    */
+
+
+        // Using With FrameWork
+
+        // Make Sure You Copy To OutPut Directory : Copy Always For All
+        // Provide ChromeDriver And other exe
+
+
+
+
+        //[Test]
+        //[DeploymentItem("Resources")]
+        //public void FileUploadTest3()
+        //{
+        //    var processinfo = new ProcessStartInfo()
+        //    {
+        //        FileName = "fileupload.exe",
+        //        Arguments = "\"" + Directory.GetCurrentDirectory() + @"\Test.xlsx" + "\""
+        //    };
+
+        //    using (var process = Process.Start(processinfo))
+        //    {
+        //        process.WaitForExit();
+        //    }
+
+
+        //    Thread.Sleep(5000);
+
+        //}
+
+
+
+
+
+        public void Dispose()
+        {
+            driver.Quit();
+        }
+
+
+
+    }
+}
+

@@ -1,0 +1,55 @@
+Craete a folder TestCllassContext and add  a class TestClassContext
+
+
+
+
+
+
+ Test_Class_Context
+
+Data Driven Testing :
+
+ - Test Data Required by system Is Stored On External File System 
+
+- Test Context : Helps To Store and Retrieve the Run Time Information
+
+- TestScript is Independent Of Data
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+public TestContext  testcontext;
+
+public TestContext TestContext
+{
+	get { return testcontext ; }
+	set { testcontext = value; }
+
+}
+
+
+[TestMethod]
+public void TestCase1()
+{
+	
+Console.WriteLine(" Test Name : {0}", TestContext.TestName);
+
+}
+
+[TestMethod]
+public void TestCase2()
+{
+	
+Console.WriteLine(" Test Name : {0}", TestContext.TestName);
+
+}
+
+[TestCleanup]
+public void AfterTest()
+{
+
+Console.WriteLine(" Test Name : {0}", TestContext.CurrentTestOutcome);
+
+}
+

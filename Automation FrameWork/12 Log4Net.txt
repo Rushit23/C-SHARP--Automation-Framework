@@ -1,0 +1,822 @@
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								Logging Framework-Log4Net
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+This Framework generates the logs for an application
+
+For Every Action there is log entry
+
+Helps in Debugging process
+
+
+Log4net
+
+
+
+Install Using Package Manager Console:
+
+Tools > NuGet Package Manager > Pacjage Manager Console
+
+
+Project Manager Console : Default Project 
+
+install-package log4net
+
+
+
+
+
+---------------------------------------------------------------------
+
+Configuration log4net
+
+
+
+You Can Define the configuration into App.config file (XML Configuration)and  Can also Define the custom class
+
+
+1. Appender : Where the log will be output (Console, file ,database)
+
+2. Format 
+
+3.Level of logging information
+
+
+Create a Folder Called Log4Net and add a class called TestLogger
+
+
+
+
+
+Appender information you can get online
+
+https://logging.apache.org/log4net/release/sdk/index.html
+
+
+Creating Console Appender
+----------------------------------------------
+
+Type of Appender : Consoleappender
+
+Format : "%message"
+
+Level of the logging information : "All"
+
+
+Certain Steps Needs to be followed 
+
+1.  Create the layout (Format in which you want to store the log)
+2.  Use the Layout in appender
+3.  Initialise the Configuration
+4.  Get the instance of the logger
+
+
+Into SDk log4net.layout > Pattern Layout Class
+
+
+Conversion Pattern Should Start with %
+
+
+Useful Pattern Layout :
+
+"message" Used to output the application supplied message associated with logging event
+
+"newline" : Used to append the new line
+
+"date{ABSOLUTE}" : Used to output the date
+
+"class" : Used to output the class name 
+
+"level" : used to output level of logging
+
+"method ": used to output method name
+
+
+
+Logger Levels
+--------------------
+
+DEBUG
+
+INFO
+
+WARN
+
+ERROR
+
+FATAL
+
+
+FATAL > ERROR > WARN > INFO > DEBUG
+
+aLL  lEVELS HAS PRIORITY           Threshold = Level.All
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TestLogger Class
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+using log4net;
+using log4net.Appender;
+using log4net.Config;
+using log4net.Core;
+using log4net.Layout;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutomationFrameWork1.Log4Net
+{
+
+    public class TestLogger
+    {
+        [Test]
+        public void TetsLog4Net()
+        {
+            var patterLayout = new PatternLayout();
+
+            patterLayout.ConversionPattern = "%date{ABSOLUTE} [%class] [%level] [%method] - %message%newline";
+
+            patterLayout.ActivateOptions();
+
+            var consoleAppender = new ConsoleAppender()
+            {
+                Name = "ConsoleAppender",
+                Layout = patterLayout,
+                Threshold = Level.All
+            };
+
+
+
+            consoleAppender.ActivateOptions();
+            BasicConfigurator.Configure(consoleAppender);
+
+            ILog Logger = LogManager.GetLogger(typeof(TestLogger));
+
+            Logger.Debug(" This IS Debug Information");
+
+            Logger.Info(" This IS Info Information");
+
+            Logger.Warn(" This IS Warn Information");
+
+            Logger.Error(" This IS Error Information");
+
+            Logger.Debug(" This IS Debug Information");
+
+
+
+
+        }
+
+
+    }
+
+}
+
+-----------------------------------------------------------------------------------------
+
+Creating File Logger
+
+
+Type of Appender : Fileappender
+
+Format of the logging information : %date{dd-MMM-yyyy}  [%level] [%class] [%method] - %message%newline
+
+Level of logging information : "All"
+
+
+   var fileAppender = new FileAppender()
+            {
+                Name = "fileAppender",
+                Layout = patterLayout,
+                Threshold = Level.All,
+                AppendToFile = true,     // with fasle it will  write only new log with true all logs 
+                File = "FileLogger.log",
+            };
+
+
+
+
+
+            fileAppender.ActivateOptions();
+            consoleAppender.ActivateOptions();
+            BasicConfigurator.Configure(consoleAppender,fileAppender);
+
+
+-----------------------------------------------------------------------------------
+
+Rolling File Appender 
+
+After  File Reaches to the Certain Size  or after  time it will  generate the new file:
+
+Will Automatically take the backup File
+
+
+
+
+
+
+            var rollingAppender = new RollingFileAppender()
+            {
+                Name = "Rolling File Appender",
+                AppendToFile = true,
+                File = "RollingFile.log",
+                Layout = patterLayout,
+                Threshold = Level.All,
+                MaximumFileSize = "1MB",
+                MaxSizeRollBackups = 15 //file1.log,file2.log.....file15.log
+            };
+            rollingAppender.ActivateOptions();
+
+
+            BasicConfigurator.Configure(consoleAppender, fileAppender, rollingAppender);
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+									Logger Class
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+using AutomationFrameWork1.Helpers;
+using log4net;
+using log4net.Appender;
+using log4net.Config;
+using log4net.Core;
+using log4net.Layout;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutomationFrameWork1.Log4Net
+{
+
+    public class TestLogger
+    {
+
+
+
+
+
+        [Test]
+        public void TetsLog4Net()
+        {
+
+
+            //var patterLayout = new PatternLayout();
+
+
+
+            ////   patterLayout.ConversionPattern = "%date{ABSOLUTE} [%class] [%level] [%method] - %message%newline";
+
+            //patterLayout.ConversionPattern = "%date{dd-MMM-yyyy-HH:mm:ss} [%class] [%level] [%method] - %message%newline";
+            //patterLayout.ActivateOptions();
+
+
+
+            //var consoleAppender = new ConsoleAppender()
+            //{
+            //    Name = "ConsoleAppender",
+            //    Layout = patterLayout,
+            //    Threshold = Level.All
+            //};
+
+            //consoleAppender.ActivateOptions();
+
+
+
+
+            //var fileAppender = new FileAppender()
+            //{
+            //    Name = "fileAppender",
+            //    Layout = patterLayout,
+            //    Threshold = Level.All,
+            //    AppendToFile = true,     // with fasle it will  write only new log with true all logs 
+            //    File = "FileLogger.log",
+            //};
+
+            //fileAppender.ActivateOptions();
+
+
+
+
+
+
+            //var rollingAppender = new RollingFileAppender()
+            //{
+            //    Name = "Rolling File Appender",
+            //    AppendToFile = true,
+            //    File = "RollingFile.log",
+            //    Layout = patterLayout,
+            //    Threshold = Level.All,
+            //    MaximumFileSize = "1MB",
+            //    MaxSizeRollBackups = 15 //file1.log,file2.log.....file15.log
+            //};
+
+            //rollingAppender.ActivateOptions();
+
+
+
+
+            //BasicConfigurator.Configure(consoleAppender, fileAppender, rollingAppender);
+
+          //      ILog Logger = LogManager.GetLogger(typeof(TestLogger));
+
+             ILog Logger = Log4NetHelper.GetLogger(typeof(TestLogger));
+
+         
+
+            for (var i = 0; i < 3000; i++)
+            {
+                Logger.Debug("This is Debug Information");
+                Logger.Info("This is Info Information");
+                Logger.Warn("This is Warn Information");
+                Logger.Error("This is Error Information");
+                Logger.Fatal("This is Fatal Information");
+            }
+
+        }
+
+
+
+
+
+
+
+
+        [Test]
+        public void TestLog4NetSec()
+        {
+            //Log4NetHelper.Layout = "%message%newline";
+            //ILog Logger = Log4NetHelper.GetLogger(typeof(TestLogger));
+            ILog Logger = Log4NetHelper.GetXmlLogger(typeof(TestLogger));
+
+            for (var i = 0; i < 3000; i++)
+            {
+                Logger.Debug("This is Debug Information");
+                Logger.Info("This is Info Information");
+                Logger.Warn("This is Warn Information");
+                Logger.Error("This is Error Information");
+                Logger.Fatal("This is Fatal Information");
+            }
+
+
+        }
+
+
+    }
+
+}
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+						Helper Class - Will Return the Instance Of The Logger
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+using log4net;
+using log4net.Appender;
+using log4net.Config;
+using log4net.Core;
+using log4net.Layout;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutomationFrameWork1.Helpers
+{
+    public class Log4NetHelper
+    {
+
+        // #region Field is a Grouping Command
+
+        #region Field
+
+        private static ILog _logger;
+        private static ILog _xmlLogger;
+        private static ConsoleAppender _consoleAppender;
+        private static FileAppender _fileAppender;
+        private static RollingFileAppender _rollingFileAppender;
+        private static string _layout = "%date{dd-MMM-yyyy-HH:mm:ss} [%class] [%level] [%method] - %message%newline";
+
+        #endregion
+
+        #region Property
+
+
+
+
+        public static string Layout
+        {
+            set { _layout = value; }
+        }
+
+        #endregion
+
+
+
+
+
+
+        #region Private
+
+        private static PatternLayout GetPatternLayout()
+        {
+            var patterLayout = new PatternLayout()
+            {
+                ConversionPattern = _layout
+            };
+            patterLayout.ActivateOptions();
+            return patterLayout;
+        }
+
+
+
+
+        private static ConsoleAppender GetConsoleAppender()
+        {
+            var consoleAppender = new ConsoleAppender()
+            {
+                Name = "ConsoleAppender",
+                Layout = GetPatternLayout(),
+                Threshold = Level.Error
+            };
+            consoleAppender.ActivateOptions();
+            return consoleAppender;
+        }
+
+
+
+
+        private static FileAppender GetFileAppender()
+        {
+            var fileAppender = new FileAppender()
+            {
+                Name = "FileAppender",
+                Layout = GetPatternLayout(),
+                Threshold = Level.All,
+                AppendToFile = true,
+                File = "FileLogger.log",
+            };
+            fileAppender.ActivateOptions();
+            return fileAppender;
+        }
+
+
+
+
+        private static RollingFileAppender GetRollingFileAppender()
+        {
+            var rollingAppender = new RollingFileAppender()
+            {
+                Name = "Rolling File Appender",
+                AppendToFile = true,
+                File = "RollingFile.log",
+                Layout = GetPatternLayout(),
+                Threshold = Level.All,
+                MaximumFileSize = "1MB",
+                MaxSizeRollBackups = 15 //file1.log,file2.log.....file15.log
+            };
+            rollingAppender.ActivateOptions();
+            return rollingAppender;
+        }
+
+
+        #endregion
+
+
+
+
+
+        #region Public
+
+        public static ILog GetLogger(Type type)
+        {
+            if (_consoleAppender == null)
+                _consoleAppender = GetConsoleAppender();
+
+            if (_fileAppender == null)
+                _fileAppender = GetFileAppender();
+
+            if (_rollingFileAppender == null)
+                _rollingFileAppender = GetRollingFileAppender();
+
+            if (_logger != null)
+                return _logger;
+
+            BasicConfigurator.Configure(_consoleAppender, _fileAppender, _rollingFileAppender);
+            _logger = LogManager.GetLogger(type);
+            return _logger;
+
+        }
+
+
+
+
+
+        public static ILog GetXmlLogger(Type type)
+        {
+            if (_xmlLogger != null)
+                return _xmlLogger;
+
+            XmlConfigurator.Configure();
+            _xmlLogger = LogManager.GetLogger(type);
+            return _xmlLogger;
+        }
+
+        #endregion
+
+
+
+    }
+
+
+
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+							Creating Logger From Configuration File
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Prove the Name OF Section Which will Contain the Log4Net
+
+Class Wich  is going to read the section 
+
+Make Changes within App.Config File
+
+
+
+1. Specify the section Name And Class Name which will read the section 
+
+2.Create the section with Configurtaion
+
+3. Using the  <root> tag specify which appender you want to use
+
+
+
+
+
+For  Xml Configuration You Will Have To run The Tests Form the App.config
+--------------------------------------------------------------------------------------------------------------------------
+App.config
+----------------
+
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+
+
+
+  <configSections>
+    
+    <!-- 1. Specify the section name and class which will read the section-->
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+    
+  </configSections>
+
+
+
+
+  <appSettings>
+
+    <add key="BrowserType" value="Chrome"/>
+    <add key="Username" value="User"/>
+    <add key="Password" value="Pass"/>
+
+    <add key="xunit.methodDisplay" value="method"/>
+
+  </appSettings>
+
+
+
+  <!-- 2. Create the section with configuration-->
+
+  <log4net>
+
+    <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender">
+      <layout name="PatternLayout" type="log4net.Layout.PatternLayout">
+        <ConversionPattern value="%date{dd-MMM-yyyy-HH:mm:ss} [%class] [%level] [%method] - %message%newline" />
+      </layout>
+      <Threshold value="INFO" />
+    </appender>
+
+
+    <appender name="FileAppender" type="log4net.Appender.FileAppender">
+      <layout name="PatternLayout" type="log4net.Layout.PatternLayout">
+        <ConversionPattern value="%date{dd-MMM-yyyy-HH:mm:ss} [%class] [%level] [%method] - %message%newline" />
+      </layout>
+      <Threshold value="INFO" />
+      <AppendToFile value="true" />
+      <File value="SeleniumFileLogger.log" />
+    </appender>
+
+
+    <appender name="RollingFileAppender" type="log4net.Appender.RollingFileAppender">
+      <layout name="PatternLayout" type="log4net.Layout.PatternLayout">
+        <ConversionPattern value="%date{dd-MMM-yyyy-HH:mm:ss} [%class] [%level] [%method] - %message%newline" />
+      </layout>
+      <Threshold value="ALL" />
+      <AppendToFile value="true" />
+      <File value="SeleniumRollingFileLogger.log" />
+      <MaximumFileSize value="1MB" />
+      <MaxSizeRollBackups value="15" />
+    </appender>
+
+
+
+    <!--3. using the <root> , specify the appender to use-->
+
+    <root>
+      <appender-ref ref="ConsoleAppender" />
+      <appender-ref ref="FileAppender" />
+      <appender-ref ref="RollingFileAppender" />
+    </root>
+
+  </log4net>
+  
+  
+  
+
+
+</configuration>
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+Debugging Failed Test Cases And Using Log File to take screenshots
+
+
+-----------------
+TestClass
+------------------------------------------------------------------------------------------------------------------------
+
+using AutomationFrameWork1.Helpers;
+using AutomationFrameWork1.Pages;
+using log4net;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace AutomationFrameWork1.Log4Net
+{
+   public class TestClass : IDisposable
+    {
+
+        public IWebDriver driver;
+        private static readonly ILog Logger = Log4NetHelper.GetXmlLogger(typeof(TestClass));
+
+        public void InitalizeDriver(string browser)
+        {
+            switch (browser)
+            {
+                case "Chrome":
+                    driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+                case "Firefox":
+                    driver = new FirefoxDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+                case "IE":
+                    driver = new InternetExplorerDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+                default:
+                    driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
+                    break;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        [Test, Category("Log4")]
+        public void VerifyFacebookLogin()
+        {
+
+
+
+
+            InitalizeDriver("Chrome");
+            NavigateToFaceBook();
+
+            string title = driver.Title;
+            Thread.Sleep(2000);
+
+
+            Facebook fb = new Facebook(driver);
+            fb.FaceBookLogin("UserName", "Password");
+            Thread.Sleep(1000);
+
+            Assert.AreEqual("Facebook - Log In or Sign Up", title);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        [Test,Category("Log4")]
+        public void VerifyFacebookLogin2()
+        {
+
+
+            try
+            {
+                InitalizeDriver("Chrome");
+                NavigateToFaceBook();
+
+                string title = driver.Title;
+                Thread.Sleep(2000);
+
+
+                Facebook fb = new Facebook(driver);
+                fb.FaceBookLogin("UserName", "Password");
+                Thread.Sleep(1000);
+
+                Assert.AreEqual("Facebook - Log Innn  or Sign Up", title);
+            }
+
+            catch (Exception exception)
+            {
+                Logger.Error(exception.StackTrace);
+                ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test.png", ScreenshotImageFormat.Png);
+                throw;
+            }
+
+     
+
+        }
+
+
+
+
+
+
+        /**********Helper Methods *******/
+
+
+
+        public void NavigateToFaceBook()
+        {
+            //  driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
+            driver.Navigate().GoToUrl("https://www.facebook.com/");
+            driver.Manage().Window.Maximize();
+        }
+
+
+
+        public void Dispose()
+        {
+            driver.Quit();
+        }
+
+
+
+    }
+}

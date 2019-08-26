@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rows>
+
+<Row>
+  <Severity>blocker</Severity>
+  <HardWare>Other</HardWare>
+  <OS>Linux</OS>
+  <Summary>Summay One - XML</Summary>   
+  <Desc>Description One - X141</Desc>
+ </Row>
+ 
+ 
+ <Row>
+  <Severity>major</Severity>
+  <HardWare>Macintosh</HardWare>
+  <OS>Other</OS>
+  <Summary>Summay Two - XML</Summary>
+  <Desc>Description Two - XML</Desc>
+ </Row>
+ 
+ </Rows>

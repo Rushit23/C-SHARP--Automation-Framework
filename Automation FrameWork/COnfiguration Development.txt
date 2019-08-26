@@ -1,0 +1,107 @@
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								Configuration Development
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Add APP.Config File Into Folder 
+
+Reference Manager : Assemblies, System.Configuration
+
+CreateFolder Config :
+
+Create Class : ConfigReader
+
+
+
+***************************************
+
+        To Solve The Null Reference Exception :
+
+        Copy The App.Config File Into The Other project 
+***************************************
+
+
+public string InitializeTest()
+{
+	return ConfigurationManager.AppSettings["AUT"].ToString();
+
+}
+
+
+--------------------------------------------------------
+
+APP CONFIG :
+
+
+
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+
+    <add key="AUT" value="https://www.rushitpatel.com/"/>
+  </appSettings>
+   
+</configuration>
+
+
+
+
+
+----------------------------------------------------------
+CONFIG READER :
+
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace KClaLFrame.Config
+{
+   public class ConfigReader
+    {
+
+        public static string InitializeTest()
+        {
+            // return ConfigurationManager.AppSettings["AUT"].ToString();
+
+
+            return ConfigurationManager.AppSettings.Get("AUT").ToString();
+        }
+
+    }
+}
+
+
+
+---------------------------------------------------------
+
+[TestMethod]
+        public void ConfigTest ()
+        {
+            InitalizeDriver("Chrome");
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl(ConfigReader.InitializeTest());
+
+        }
+
+
+
+
+     [TestMethod]
+        public void AppConfigTest ()
+        {
+
+            Console.WriteLine(ConfigurationManager.AppSettings.Get("BrowserType"));
+            Console.WriteLine(ConfigurationManager.AppSettings.Get("Username"));
+            Console.WriteLine(ConfigurationManager.AppSettings.Get("Password"));
+            Console.WriteLine((int)BrowserType.chrome);
+            Console.WriteLine((int)BrowserType.firefox);
+        }
+
+
+
+

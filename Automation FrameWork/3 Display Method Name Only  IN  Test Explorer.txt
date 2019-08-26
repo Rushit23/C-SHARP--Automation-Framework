@@ -1,0 +1,11 @@
+
+
+
+Add The App.config file into project 
+
+
+<configuration>
+  <appSettings>
+    <add key="xunit.methodDisplay" value="method"/>
+  </appSettings>
+</configuration>

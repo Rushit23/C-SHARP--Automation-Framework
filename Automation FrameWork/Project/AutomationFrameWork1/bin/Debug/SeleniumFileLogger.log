@@ -1,0 +1,5 @@
+01-Jul-2019-19:38:35 [AutomationFrameWork1.Log4Net.TestClass] [ERROR] [VerifyFacebookLogin2] -    at NUnit.Framework.Assert.ReportFailure(String message) in D:\a\1\s\src\NUnitFramework\framework\Assert.cs:line 394
+   at NUnit.Framework.Assert.ReportFailure(ConstraintResult result, String message, Object[] args) in D:\a\1\s\src\NUnitFramework\framework\Assert.cs:line 382
+   at NUnit.Framework.Assert.That[TActual](TActual actual, IResolveConstraint expression, String message, Object[] args) in D:\a\1\s\src\NUnitFramework\framework\Assert.That.cs:line 240
+   at NUnit.Framework.Assert.AreEqual(Object expected, Object actual) in D:\a\1\s\src\NUnitFramework\framework\Assert.Equality.cs:line 128
+   at AutomationFrameWork1.Log4Net.TestClass.VerifyFacebookLogin2() in C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\AutomationFrameWork1\Log4Net\TestClass.cs:line 106

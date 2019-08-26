@@ -1,0 +1,31 @@
+
+File_Upload_AutoIT_Script
+
+- Window Based Authentication   Handling
+
+- Window Based Dialog-Box
+
+
+Install The Auto It
+
+- FIleUpload.au3 Is The Extension
+
+
+
+1. Create a loop which will wait for file upload dialog box
+
+2.Bring the Upload DialogBox In Focus
+
+3.Supply The file along with its path in the uploaddialog
+
+4.Click On Upload Button
+
+Search : Autoit WIndow Info
+
+FInder Tool :  With The Help Of Finder Tool Get The Handle
+
+Title:
+
+Basic ControlInfo : (File)
+
+AfterAll  Go To : Tool > Build >  It Will Generate the .exe file

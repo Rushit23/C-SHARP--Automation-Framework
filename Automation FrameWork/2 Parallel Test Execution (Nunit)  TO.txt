@@ -1,0 +1,55 @@
+/************** Parallel Test Execution  C#OLD(UnitTest Project) *************/
+
+Running The Parallel test At The Class Level
+
+
+
+
+/******** S1 **********/
+
+
+
+Project > Properties > Assemblyinfo.cs
+
+[assembly:Parallelizable(ParallelScope.Fixtures)]
+
+
+
+
+
+/******** S2 **********/
+
+Give Each Class Tag 
+
+[Parallelizable]
+public class Login
+{
+	
+}
+
+
+// Will Exclude The Scope From running
+
+
+[Parallelizable(ParallelScope.None)]
+public class Login
+{
+	
+}
+
+
+
+Note: To Run The Tests Parallel You Must Have Several Instances Of Driver
+
+
+
+
+
+
+// How Many Parallel Test You Want To Execute At the Same Time
+
+
+
+- Depends Upon CPU With 2, 4 , 8 Cores
+
+[assembly: LevelOfParallelism(2)] 

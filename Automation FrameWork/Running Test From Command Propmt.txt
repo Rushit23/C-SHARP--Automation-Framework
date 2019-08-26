@@ -1,0 +1,28 @@
+
+Runnng Test Form The Command prompt
+
+
+Nuget : NUnitConsoleRunner
+
+Open the Solution :
+
+copy the path of NuintConsoleRunner>nunit-3console.exe "copy the path of the Project\AutoFramework.exe" 
+
+Open Command Prompt (CMD) as administartor:
+
+C:\Users\RUSHIT  PATEL\Downloads\Learn\C#\C# and selenium web driver\Author Code\AutoFramework\packages\NUnit.ConsoleRunner.3.8.0\tools>nunit3-console.exe "C:\Users\RUSHIT  PATEL\Downloads\Learn\C#\C# and selenium web driver\Author Code\AutoFramework\AutoFramework\bin\Debug\AutoFramework.exe"
+
+
+
+
+
+
+
+If You Dont Finfd the AutomationFrameWork1.exe  it will be AutomationFrameWork1.dll (Executable Application)
+
+
+
+
+The Report Will Be Generated in form of XML Report
+
+

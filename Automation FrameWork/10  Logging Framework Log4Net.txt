@@ -1,0 +1,158 @@
+
+
+Logging Framework
+
+
+This Framework generates the logs for an application
+
+For Every Action there is log entry
+
+Helps in Debugging process
+
+
+Log4net
+
+
+
+Install Using Package Manager Console:
+
+Tools > NuGet Package Manager > Pacjage Manager Console
+
+
+Project Manager Console : Default Project 
+
+install-package log4net
+
+
+
+
+
+---------------------------------------------------------------------
+
+Configuration log4net
+
+
+
+You Can Define the configuration into App.config file (XML Configuration)and  Can also Define the custom class
+
+
+1. Appender : Where the log will be output (Console, file ,database)
+
+2. Format 
+
+3.Level of logging information
+
+
+Create a Folder Called Log4Net and add a class called TestLogger
+
+
+
+
+
+Appender information you can get online
+
+https://logging.apache.org/log4net/release/sdk/index.html
+
+
+Creating Console Appender
+----------------------------------------------
+
+Type of Appender : Consoleappender
+
+Format : "%message"
+
+Level of the logging information : "All"
+
+
+Certain Steps Needs to be followed 
+
+1.  Create the layout (Format in which you want to store the log)
+2.  Use the Layout in appender
+3.  Initialise the Configuration
+4.  Get the instance of the logger
+
+
+Into SDk log4net.layout > Pattern Layout Class
+
+
+Conversion Pattern Should Start with %
+
+
+Useful Pattern Layout :
+
+"message" Used to output the application supplied message associated with logging event
+
+"newline" : Used to append the new line
+
+"date{ABSOLUTE}" : Used to output the date
+
+"class" : Used to output the class name 
+
+"level" : used to output level of logging
+
+"method ": used to output method name
+
+
+
+
+TestLogger Class
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+using log4net;
+using log4net.Appender;
+using log4net.Config;
+using log4net.Core;
+using log4net.Layout;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AutomationFrameWork1.Log4Net
+{
+
+    public class TestLogger
+    {
+        [Test]
+        public void TetsLog4Net()
+        {
+            var patterLayout = new PatternLayout();
+
+            patterLayout.ConversionPattern = "%date{ABSOLUTE} [%class] [%level] [%method] - %message%newline";
+
+            patterLayout.ActivateOptions();
+
+            var consoleAppender = new ConsoleAppender()
+            {
+                Name = "ConsoleAppender",
+                Layout = patterLayout,
+                Threshold = Level.All
+            };
+
+
+
+            consoleAppender.ActivateOptions();
+            BasicConfigurator.Configure(consoleAppender);
+
+            ILog Logger = LogManager.GetLogger(typeof(TestLogger));
+
+            Logger.Debug(" This IS Debug Information");
+
+            Logger.Info(" This IS Info Information");
+
+            Logger.Warn(" This IS Warn Information");
+
+            Logger.Error(" This IS Error Information");
+
+            Logger.Debug(" This IS Debug Information");
+
+
+
+
+        }
+
+
+    }
+
+}

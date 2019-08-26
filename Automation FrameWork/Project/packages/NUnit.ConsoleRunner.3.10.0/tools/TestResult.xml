@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="2" testcasecount="7" result="Failed" total="7" passed="6" failed="1" inconclusive="0" skipped="0" asserts="3" engine-version="3.10.0.0" clr-version="4.0.30319.42000" start-time="2019-06-26 15:36:51Z" end-time="2019-06-26 15:39:08Z" duration="137.002373">
+  <command-line><![CDATA[nunit3-console.exe  "C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\AutomationFrameWork1\bin\Debug\AutomationFrameWork1.dll"]]></command-line>
+  <test-suite type="Assembly" id="0-1012" name="AutomationFrameWork1.dll" fullname="C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\AutomationFrameWork1\bin\Debug\AutomationFrameWork1.dll" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2019-06-26 15:36:54Z" end-time="2019-06-26 15:39:07Z" duration="133.894922" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="3">
+    <environment framework-version="3.12.0.0" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 10.0.17134.0" platform="Win32NT" cwd="C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\packages\NUnit.ConsoleRunner.3.10.0\tools" machine-name="RUSHIT" user="RUSHIT  PATEL" user-domain="RUSHIT" culture="en-IN" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="DisposeRunners" value="True" />
+      <setting name="WorkDirectory" value="C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\packages\NUnit.ConsoleRunner.3.10.0\tools" />
+      <setting name="ImageRuntimeVersion" value="4.0.30319" />
+      <setting name="ImageTargetFrameworkName" value=".NETFramework,Version=v4.7.2" />
+      <setting name="ImageRequiresX86" value="False" />
+      <setting name="ImageRequiresDefaultAppDomainAssemblyResolver" value="False" />
+      <setting name="NumberOfTestWorkers" value="4" />
+    </settings>
+    <properties>
+      <property name="ParallelScope" value="Fixtures" />
+      <property name="LevelOfParallelism" value="2" />
+      <property name="_PID" value="17192" />
+      <property name="_APPDOMAIN" value="domain-" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="0-1013" name="AutomationFrameWork1" fullname="AutomationFrameWork1" runstate="Runnable" testcasecount="7" result="Failed" site="Child" start-time="2019-06-26 15:36:54Z" end-time="2019-06-26 15:39:07Z" duration="133.772729" total="7" passed="6" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="3">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="0-1014" name="ExcelRead" fullname="AutomationFrameWork1.ExcelRead" runstate="Runnable" testcasecount="1" result="Passed" start-time="2019-06-26 15:36:54Z" end-time="2019-06-26 15:36:56Z" duration="2.762256" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+        <test-suite type="TestFixture" id="0-1010" name="TestExcelData" fullname="AutomationFrameWork1.ExcelRead.TestExcelData" classname="AutomationFrameWork1.ExcelRead.TestExcelData" runstate="Runnable" testcasecount="1" result="Passed" start-time="2019-06-26 15:36:54Z" end-time="2019-06-26 15:36:56Z" duration="2.757340" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+          <test-case id="0-1011" name="ReadData" fullname="AutomationFrameWork1.ExcelRead.TestExcelData.ReadData" methodname="ReadData" classname="AutomationFrameWork1.ExcelRead.TestExcelData" runstate="Runnable" seed="1017318807" result="Passed" start-time="2019-06-26 15:36:54Z" end-time="2019-06-26 15:36:56Z" duration="2.594222" asserts="0">
+            <output><![CDATA[UserName
+Password
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+      <test-suite type="TestFixture" id="0-1005" name="FirstTestClass" fullname="AutomationFrameWork1.FirstTestClass" classname="AutomationFrameWork1.FirstTestClass" runstate="Runnable" testcasecount="1" result="Passed" start-time="2019-06-26 15:36:56Z" end-time="2019-06-26 15:37:26Z" duration="29.838961" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+        <properties>
+          <property name="ParallelScope" value="Self" />
+        </properties>
+        <test-case id="0-1006" name="VerifyTitle1" fullname="AutomationFrameWork1.FirstTestClass.VerifyTitle1" methodname="VerifyTitle1" classname="AutomationFrameWork1.FirstTestClass" runstate="Runnable" seed="1673292836" result="Passed" start-time="2019-06-26 15:36:56Z" end-time="2019-06-26 15:37:21Z" duration="24.653451" asserts="1" />
+      </test-suite>
+      <test-suite type="TestFixture" id="0-1003" name="SecondTestClass" fullname="AutomationFrameWork1.SecondTestClass" classname="AutomationFrameWork1.SecondTestClass" runstate="Runnable" testcasecount="1" result="Passed" start-time="2019-06-26 15:37:26Z" end-time="2019-06-26 15:37:51Z" duration="24.867511" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+        <properties>
+          <property name="ParallelScope" value="Self" />
+        </properties>
+        <test-case id="0-1004" name="VerifyPortfolioTitle" fullname="AutomationFrameWork1.SecondTestClass.VerifyPortfolioTitle" methodname="VerifyPortfolioTitle" classname="AutomationFrameWork1.SecondTestClass" runstate="Runnable" seed="1073817799" result="Passed" start-time="2019-06-26 15:37:26Z" end-time="2019-06-26 15:37:47Z" duration="20.586170" asserts="1" />
+      </test-suite>
+      <test-suite type="TestFixture" id="0-1000" name="FacebookTest" fullname="AutomationFrameWork1.FacebookTest" classname="AutomationFrameWork1.FacebookTest" runstate="Runnable" testcasecount="2" result="Failed" site="Child" start-time="2019-06-26 15:36:54Z" end-time="2019-06-26 15:39:07Z" duration="133.631985" total="2" passed="1" failed="1" warnings="0" inconclusive="0" skipped="0" asserts="1">
+        <properties>
+          <property name="ParallelScope" value="Self" />
+        </properties>
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-case id="0-1002" name="FacebookLoginTestWIthExcelFIle" fullname="AutomationFrameWork1.FacebookTest.FacebookLoginTestWIthExcelFIle" methodname="FacebookLoginTestWIthExcelFIle" classname="AutomationFrameWork1.FacebookTest" runstate="Runnable" seed="1218235519" result="Failed" label="Error" start-time="2019-06-26 15:36:54Z" end-time="2019-06-26 15:38:16Z" duration="82.623394" asserts="0">
+          <failure>
+            <message><![CDATA[OpenQA.Selenium.NoAlertPresentException : no such alert
+  (Session info: chrome=75.0.3770.100)
+  (Driver info: chromedriver=74.0.3729.6 (255758eccf3d244491b8a1317aa76e1ce10d57e9-refs/branch-heads/3729@{#29}),platform=Windows NT 10.0.17134 x86_64)]]></message>
+            <stack-trace><![CDATA[   at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+   at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+   at OpenQA.Selenium.Remote.RemoteTargetLocator.Alert()
+   at AutomationFrameWork1.FacebookTest.FacebookLoginTestWIthExcelFIle() in C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\AutomationFrameWork1\FacebookTest.cs:line 85]]></stack-trace>
+          </failure>
+        </test-case>
+        <test-case id="0-1001" name="VerifyFacebookLogin" fullname="AutomationFrameWork1.FacebookTest.VerifyFacebookLogin" methodname="VerifyFacebookLogin" classname="AutomationFrameWork1.FacebookTest" runstate="Runnable" seed="695518814" result="Passed" start-time="2019-06-26 15:38:16Z" end-time="2019-06-26 15:39:06Z" duration="49.682175" asserts="1" />
+      </test-suite>
+      <test-suite type="TestFixture" id="0-1007" name="AppCOnfigTest" fullname="AutomationFrameWork1.AppCOnfigTest" classname="AutomationFrameWork1.AppCOnfigTest" runstate="Runnable" testcasecount="2" result="Passed" start-time="2019-06-26 15:39:07Z" end-time="2019-06-26 15:39:07Z" duration="0.114899" total="2" passed="2" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="0">
+        <properties>
+          <property name="ParallelScope" value="None" />
+        </properties>
+        <test-case id="0-1008" name="ReadingDataFromAppConfig" fullname="AutomationFrameWork1.AppCOnfigTest.ReadingDataFromAppConfig" methodname="ReadingDataFromAppConfig" classname="AutomationFrameWork1.AppCOnfigTest" runstate="Runnable" seed="781531127" result="Passed" start-time="2019-06-26 15:39:07Z" end-time="2019-06-26 15:39:07Z" duration="0.112001" asserts="0">
+          <output><![CDATA[Chrome
+User
+Pass
+1
+]]></output>
+        </test-case>
+        <test-case id="0-1009" name="ReadingDataFromAppConfig_02" fullname="AutomationFrameWork1.AppCOnfigTest.ReadingDataFromAppConfig_02" methodname="ReadingDataFromAppConfig_02" classname="AutomationFrameWork1.AppCOnfigTest" runstate="Runnable" seed="1894955217" result="Passed" start-time="2019-06-26 15:39:07Z" end-time="2019-06-26 15:39:07Z" duration="0.002216" asserts="0">
+          <output><![CDATA[Browser : Chrome
+Username : User
+Password : Pass
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

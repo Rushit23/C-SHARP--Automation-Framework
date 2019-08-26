@@ -1,0 +1,21 @@
+Page Factory Issue :
+
+
+Install  from the NugetPackage :
+
+DotNetSeleniumExtras.PageObjects  
+DotNetSeleniumExtras.PageObjects.Core
+DotNetSeleniumExtras.PageObjects.Core.Linq
+
+ ONLY IF NEEDED : Uninstall  selenium.support if needed
+
+Replace : OpenQA.Selenium.Support.PageObjects   with
+using SeleniumExtras.PageObjects;
+
+
+-------------------------------------------------------------------------------------
+
+Install DotNetSeleniumExtras.PageObjects 
+
+Delete Selenium.Support  (IF you are not using any other code that comes from it, which at this point in the course we are not)
+Replace the OpenQA.Selenium.Support.PageObjects  namespace in your classes with the SeleniumExtras.PageObjects  namespace

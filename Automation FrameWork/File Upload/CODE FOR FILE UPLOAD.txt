@@ -1,0 +1,137 @@
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+									AutoitScript
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+$count = 0
+Sleep(3000)
+While $count <> 10
+   $firefox = WinActivate("File Upload")
+   $chrome = WinActivate("Open")
+   If $firefox <> 0 Then
+	  ControlFocus("File Upload","","Edit1")
+	  Sleep(500)
+	  ControlSetText("File Upload","","Edit1",$CmdLine[1])
+	  Sleep(500)
+	  ControlClick("File Upload","","Button1")
+	  Exit
+   ElseIf $chrome <> 0 Then
+	  ControlFocus("Open","","Edit1")
+	  Sleep(500)
+	  ControlSetText("Open","","Edit1",$CmdLine[1])
+	  Sleep(500)
+	  ControlClick("Open","","Button1")
+	  Exit
+   EndIf
+   Sleep(1000)
+   $count  = $count + 1
+WEnd
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+using System;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
+using System.Threading;
+
+namespace Fileupload
+{
+    class Program
+    {
+        static IWebDriver driver = new ChromeDriver();
+        static IWebElement RadioButton;
+
+
+        static void Main()
+        {
+            driver.Navigate().GoToUrl("https://smallpdf.com/word-to-pdf");
+            RadioButton= driver.FindElement(By.XPath("/html/body/div[1]/div[2]/div/div[2]/div/div[2]/div/div/div/div/label/div[2]/div[1]/div/div[1]/p[1]/span/span"));
+            RadioButton.Click();
+
+            var processinfo = new ProcessStartInfo()
+            {
+                FileName = @"C:\Users\RUSHIT  PATEL\Downloads\Learn\C# and selenium web driver\File upload\Exer1\FileUpload.exe",
+                Arguments = @"D:\FileExpr.docx"
+            };
+
+            using (var process = Process.Start(processinfo))
+            {
+                process.WaitForExit();
+            }
+
+
+            Thread.Sleep(5000);
+
+
+
+        }
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/******************************************************************************************************************************************/
+
+
+
+
+
+
+Create The
+
+ FileUpload Folder >
+
+ Create The Class TestFileUploadAction
+
+
+  [TestMethod]
+        public void FileUploadTest()
+        {
+            ProcessStartInfo processinfo = new ProcessStartInfo();
+            processinfo.FileName = @"Path To .exe File";
+            processinfo.Arguments = @"Path To The File You Want To Upload";
+
+
+            Process process = Process.Start(processinfo);
+            process.WaitForExit();
+            process.Close();
+
+            Thread.Sleep(5000);
+
+        }
+
+        							/****************/
+        							/******	OR ******/
+        							/****************/
+
+        WhenEver You Have Resources Which Require Opening And CLosinng 
+
+        Use The Using
+        // Will Automatically perform The Closing Action 
+
+
+ [TestMethod]
+        public void FileUploadTest()
+        {
+            var processinfo = new ProcessStartInfo()
+            {
+                FileName = @"C:\Users\RUSHIT  PATEL\Downloads\Learn\C# and selenium web driver\File upload\Exer1\FileUpload.exe",
+                Arguments = @"D:\FileExpr.docx"
+            };
+
+            using (var process = Process.Start(processinfo))
+            {
+                process.WaitForExit();
+            }
+
+
+            Thread.Sleep(5000);
+
+        }

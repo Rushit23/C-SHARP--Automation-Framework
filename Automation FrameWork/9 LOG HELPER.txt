@@ -1,0 +1,122 @@
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+								LOG HELPER
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+LogHelper  :  Helps To Track The Process  Happening  Behind The Scene 
+
+
+There  Are Two Ways To Keep Our Logging To Work :
+
+1. OutPutting Log To External Data Source/File
+
+2. OutPutting Log To Console
+
+ ********************************************************
+
+
+
+//  File Name Should Be Dynamic So That It Can Be Diffrent Every-Time
+
+
+
+1. Create A File Which can Store The Log Information
+
+2. Create A Method Which Can Write The Text Into The File
+
+
+
+//  Global declaration Of File
+
+
+public static string logFileName = string.Format("{0:yyyymmddhhmmss}",DateTime.Now)
+
+ public static StreamWriter streamw = null ;
+
+
+
+
+
+// Create A File Which can Store The Log Information
+
+public void CreateLogFile ()
+{
+	string dir =
+
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+using AutomationFrameWork1.Base;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using SeleniumExtras.PageObjects;
+using AutomationFrameWork1.Settings;
+using OpenQA.Selenium.Chrome;
+
+namespace AutomationFrameWork1.Helpers
+{
+    public class LogHelper
+    {
+        
+
+        public  string logFileName = string.Format("{0:yyyymmddhhmmss}", DateTime.Now);
+        public StreamWriter streamw = null;
+
+        public  void CreateLogFile()
+        {
+            string dir = @"D:\Test1\";
+            if (Directory.Exists(dir))
+            {
+
+                streamw = File.AppendText(dir + logFileName + ".log");
+            }
+            else
+            {
+                Directory.CreateDirectory(dir);
+                streamw = File.AppendText(dir + logFileName + ".log");
+
+            }
+
+        }
+
+
+        public void Write(string logMessage)
+        {
+
+            streamw.Write("{0}  {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
+            streamw.WriteLine("  {0}", logMessage);
+            streamw.Flush();
+
+        }
+
+
+
+     
+
+
+        [Test]
+        public void logfileTest()
+        {
+            CreateLogFile();
+            Thread.Sleep(5000);
+
+            Write("This Is LogFile Test");
+        }
+
+
+
+
+    }
+}

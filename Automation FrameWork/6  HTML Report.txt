@@ -1,0 +1,83 @@
+
+
+
+
+1) First Step
+
+
+Runnng Test Form The Command prompt ( As Administrator ) 
+
+
+Nuget : NUnitConsoleRunner
+
+Open the Solution :
+
+copy the path of NuintConsoleRunner>nunit-3console.exe "copy the path of the Project\AutoFramework.exe" 
+
+Open Command Prompt (CMD) as administartor:
+
+C:\Users\RUSHIT  PATEL\Downloads\Learn\C#\C# and selenium web driver\Author Code\AutoFramework\packages\NUnit.ConsoleRunner.3.8.0\tools>nunit3-console.exe "C:\Users\RUSHIT  PATEL\Downloads\Learn\C#\C# and selenium web driver\Author Code\AutoFramework\AutoFramework\bin\Debug\AutoFramework.exe"
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+2)	 HTML Report Generating
+
+
+
+
+
+
+HTML Report Generating 
+
+Nuget: ReportUnit
+
+
+
+copy the path of  ReportUnit>ReportUnit.exe "Path to the TestResult XMl File Which is Inside Console Runner Folder" 
+
+
+
+C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\packages\ReportUnit.1.2.1\tools>ReportUnit.exe "C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\packages\NUnit.ConsoleRunner.3.10.0\tools\"
+
+
+
+
+
+Html FIle Will Be Generated Inside The NUnitConsole Runner
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------
+Generating Report and HTML file together 
+
+
+
+Or Create a Folder Report tools Inside c Drive 
+
+ReportTools 
+
+Copy and Pase Nunit Console Runner Files and Report Unit
+
+
+C:\ ReportTools > nunit3-console.exe "C:\Users\RUSHIT  PATEL\source\repos\AutomationFrameWork1\AutomationFrameWork1\bin\Debug\AutomationFrameWork1.dll"
+
+C:\ ReportTools >ReportuUnit.exe "TestResult.xml"
+
+
